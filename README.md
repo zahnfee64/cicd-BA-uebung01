@@ -1,4 +1,4 @@
-# CI/CD Übung – Java Basisprojekt (mit Hinweisen)
+# CI/CD Übung – Java Basisprojekt
 
 Dieses Repository ist der Startpunkt für **Übung 1** und wird in **allen folgenden Übungen** weiterverwendet
 (CI mit GitHub Actions → SonarCloud → Docker → Security-Scan).
@@ -6,8 +6,8 @@ Dieses Repository ist der Startpunkt für **Übung 1** und wird in **allen folge
 ---
 
 ## Voraussetzungen (VS Code)
-- Installiere **Extension Pack for Java** (Language Support, Debugger, Test Runner, Maven).
-- Stelle sicher, dass **JDK 17** aktiv ist: *Java: Configure Java Runtime*.
+- **Extension Pack for Java** (Language Support, Debugger, Test Runner, Maven).
+- **JDK 17** aktiv: *Java: Configure Java Runtime*.
 - Öffne **den Projektroot** (Ordner mit `pom.xml`), nicht nur `src/`.
 - Tests ausführen: *Test Explorer* oder per Terminal `mvn -q -DskipTests=false test`.
 
@@ -24,7 +24,7 @@ Coverage-Report (für Übung 2 / SonarCloud): `target/site/jacoco/index.html`
 
 ## Projektstruktur
 - `src/main/java`: `App`, `Calculator`, `TextUtils`, `NumberUtils`
-- `src/test/java`: `CalculatorTest`, `TextUtilsTest` (enthält TODOs & einen bewusst fehlschlagenden Test)
+- `src/test/java`: `CalculatorTest`, `TextUtilsTest` (enthält TODOs & weitere Hinweise)
 
 ---
 
