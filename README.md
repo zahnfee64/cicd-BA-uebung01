@@ -158,5 +158,125 @@ mvn -q -DskipTests=false test
 
 ---
 
+## Troubleshooting (Windows, Linux & Allgemein)
+
+### A) Quick Checks (alle Plattformen)
+- Projekt-Root geöffnet (Ordner mit `pom.xml`)?  
+- `java -version` und `mvn -v` liefern Versionen?  
+- In `pom.xml` stehen `junit-jupiter-api` **und** `junit-jupiter-engine`; Surefire 3.x aktiv?  
+- Tests lokal grün:
+  ```bash
+  mvn -q -DskipTests=false test
+  ```
+- `git remote -v`: **origin** → eigenes Repo; **upstream** (falls vorhanden) nur zum Lesen.
+
+### B) Windows – Installation & PATH
+- Installieren (PowerShell):
+  ```powershell
+  winget install Git.Git
+  winget install Apache-Maven.Apache-Maven
+  winget install EclipseAdoptium.Temurin.17.JDK
+  java -version
+  mvn -v
+  setx JAVA_HOME "C:\Program Files\Eclipse Adoptium\jdk-17"
+  $env:PATH += ";C:\Program Files\Eclipse Adoptium\jdk-17in"
+  ```
+- VS Code → „**Java: Configure Java Runtime**“ → **JDK 17** wählen.  
+- Lange Pfade: `git config --global core.longpaths true`.
+
+### C) Linux – Installation & PATH
+- Debian/Ubuntu:
+  ```bash
+  sudo apt update && sudo apt install -y openjdk-17-jdk maven git
+  ```
+- Fedora:
+  ```bash
+  sudo dnf install -y java-17-openjdk-devel maven git
+  ```
+- Arch:
+  ```bash
+  sudo pacman -S jdk17-openjdk maven git
+  ```
+- JAVA_HOME/PATH setzen:
+  ```bash
+  java -version && mvn -v
+  echo 'export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))' >> ~/.bashrc
+  echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bashrc && source ~/.bashrc
+  ```
+
+### D) VS Code – Tests werden nicht erkannt
+- **Extension Pack for Java** installieren (inkl. Test Runner).  
+- Projekt neu laden: „**Java: Clean Java Language Server Workspace**“.  
+- POM prüfen:
+  ```xml
+  <dependency>org.junit.jupiter:junit-jupiter-api:5.10.2</dependency>
+  <dependency>org.junit.jupiter:junit-jupiter-engine:5.10.2</dependency>
+  <plugin>maven-surefire-plugin:3.2.5</plugin>
+  ```
+
+### E) Git & PR – häufige Fehler
+- **HTTPS + 2FA:** statt Passwort **Personal Access Token** verwenden.  
+- **SSH:** Key erstellen & bei GitHub hinterlegen:
+  ```bash
+  ssh-keygen -t ed25519 -C "<deine-mail>"
+  eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519
+  cat ~/.ssh/id_ed25519.pub  # Key bei GitHub > Settings > SSH Keys hinzufügen
+  ```
+- **Falscher Push-Remote:**  
+  ```bash
+  git config remote.pushDefault origin
+  ```
+- **PR „Update branch“ / Konflikte:**
+  ```bash
+  git fetch origin
+  git switch feature/about-me
+  git merge origin/main   # oder: git rebase origin/main
+  # Konflikte in VS Code lösen → mvn test → commit → push
+  ```
+- **non-fast-forward beim Push:** `git pull --rebase`, dann `git push`.  
+- **PR blockiert:** Branch-Protection → Approval/Checks (CI) nötig.
+
+### F) Zeilenenden & Encoding
+```bash
+# Windows:
+git config --global core.autocrlf true
+# macOS/Linux:
+git config --global core.autocrlf input
+```
+
+### G) Netzwerk & Proxy
+- Env-Variablen setzen:
+  ```powershell
+  $env:HTTP_PROXY="http://proxy:3128"; $env:HTTPS_PROXY="http://proxy:3128"
+  ```
+  ```bash
+  export HTTP_PROXY=http://proxy:3128
+  export HTTPS_PROXY=http://proxy:3128
+  ```
+- Maven-Proxy in `~/.m2/settings.xml`:
+  ```xml
+  <settings>
+    <proxies>
+      <proxy>
+        <active>true</active>
+        <protocol>http</protocol>
+        <host>proxy</host><port>3128</port>
+      </proxy>
+    </proxies>
+  </settings>
+  ```
+
+### H) Diagnose-Kommandos
+```bash
+java -version    | mvn -v
+git status       | git log --oneline --graph --decorate -10
+git remote -v    | git config --get remote.pushDefault
+git branch -vv   | git rev-parse --abbrev-ref HEAD
+mvn -q -DskipTests=false test
+```
+
+---
+
+
 ## Ausblick
 - **Übung 2 (22.10.)**: GitHub Actions – Build & Tests automatisiert ausführen; SonarCloud integrieren.
