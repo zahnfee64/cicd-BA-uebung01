@@ -2,16 +2,8 @@ package com.example.cicd;
 
 import java.util.List;
 
-/**
- * Hinweise (für Ü2/Sonar):
- * - public static nicht-finales Feld: MAX_OPERANDS → Empfehlung: private final
- * - Magic Number 42 in add()
- * - divide(): Rückgabe 0 bei Division durch 0 → lieber Exception
- * - Doppelte Logik (sumUp / addAll) → Refactoring (gemeinsame Hilfsmethode/Stream)
- */
 public class Calculator {
 
-    // Absichtlich nicht final: Sonar kann das bemängeln (Mutable static)
     public static int MAX_OPERANDS = 100;
 
     // Einfacher Addierer
@@ -31,7 +23,7 @@ public class Calculator {
     // (Bug/Code Smell – wird von Sonar i.d.R. markiert)
     public int divide(int a, int b) {
         if (b == 0) {
-            return 0; // TODO(Ü2): geeignete Exception werfen
+            return 0; 
         }
         return a / b; // Integer Division
     }
