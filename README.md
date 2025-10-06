@@ -6,8 +6,8 @@ Dieses Repository ist der Startpunkt für **Übung 1** und wird in **allen folge
 ---
 
 ## Voraussetzungen (VS Code)
-- Installiere **Extension Pack for Java** (Language Support, Debugger, Test Runner, Maven).
-- Stelle sicher, dass **JDK 17** aktiv ist: *Java: Configure Java Runtime*.
+- **Extension Pack for Java** (Language Support, Debugger, Test Runner, Maven).
+- **JDK 17** aktiv: *Java: Configure Java Runtime*.
 - Öffne **den Projektroot** (Ordner mit `pom.xml`, nicht nur `src/`).
 - Tests ausführen: *Test Explorer* oder per Terminal:
   ```bash
@@ -35,8 +35,8 @@ Coverage-Report (für Übung 2 / SonarCloud): `target/site/jacoco/index.html`
 ### (1) Repository einrichten (4 P.) – **Fork & Clone / Template / ZIP**
 > Lege **dein eigenes Repo** mit dem Namen **`ci-cd-uebung-[Nachname]`** an und bringe das Starterprojekt hinein. Wähle **eine** der Varianten.
 
-**Variante A – Fork (empfohlen, wenn es ein zentrales Kurs-Repo gibt)**  
-1. Öffne das Kurs-Starter-Repo (z. B. `https://github.com/<org>/<kurs-starter-repo>`).  
+**Variante A – Fork**  
+1. Öffne das Kurs-Starter-Repo (`https://github.com/mrckurz/cicd-BA-uebung01`).  
 2. Klick **Fork** → *Owner*: dein Account → *Name*: `ci-cd-uebung-[Nachname]` → Create fork.  
 3. **Deinen Fork klonen** (HTTPS oder SSH):
    ```bash
