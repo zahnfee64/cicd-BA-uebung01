@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Hinweis:
  * - Dieser Test wird voraussichtlich FAILEN, weil isPalindrome '==' nutzt.
- * - In Ü2: Bug fixen (equalsIgnoreCase) und Test grün bekommen.
+ * - In Uebung 2 sollte dieser Bug gefixt werden.
  */
 class TextUtilsTest {
 
