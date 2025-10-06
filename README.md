@@ -91,7 +91,7 @@ mvn -q -DskipTests=false test
 
 ### (2) Projektgrundlage + erste Tests (6 P.)
 - Das Starterprojekt liegt bereits unter `src/`.  
-- **Aufgabe:** Schreibe **mindestens einen zusätzlichen Unit-Test** in `src/test/java` (z. B. weitere Fälle für `Calculator` oder `TextUtils`).  
+- **Aufgabe:** Schreibe **mindestens zwei zusätzliche Unit-Test** in `src/test/java` (z. B. weitere Fälle für `Calculator` oder `TextUtils`).  
 - Stelle sicher, dass die Tests **lokal ausführbar** sind (`mvn test` oder Test-Explorer).
 
 ---
@@ -131,7 +131,7 @@ mvn -q -DskipTests=false test
 | Teilaufgabe | Beschreibung | Punkte |
 |---|---|---:|
 | Repo einrichten | Repo + Starterprojekt im eigenen Repo, lokal geklont | 4 |
-| Projektgrundlage & Tests | mindestens **1 zusätzlicher Test** geschrieben, Tests laufen lokal | 6 |
+| Projektgrundlage & Tests | mindestens **2 zusätzlichen Tests** geschrieben, Tests laufen lokal | 6 |
 | Branching | Branch erstellt, `about-me.md` mit allen geforderten Inhalten | 6 |
 | PR & Review | PR mit Beschreibung, 1 Review-Kommentar, Merge | 6 |
 | Dokumentation | README-Abschnitt „Übung 1“ ergänzt | 2 |
