@@ -1,14 +1,7 @@
 package com.example.cicd;
 
-/**
- * Hinweise (für Ü2/Sonar):
- * - isPalindrome(): '==' statt equalsIgnoreCase → Bug
- * - safeParseInt(): leerer Catch + zu generische Exception → spezifischer fangen, loggen
- * - TODO(Ü2): Unit-Tests so erweitern, dass Bug sichtbar wird und danach fixen
- */
 public class TextUtils {
 
-    // Bug: String-Vergleich mit '==' statt equalsIgnoreCase -> Sonar sollte das finden
     public static boolean isPalindrome(String input) {
         if (input == null) return false;
         String reversed = new StringBuilder(input).reverse().toString();
@@ -19,7 +12,7 @@ public class TextUtils {
     public static int safeParseInt(String s) {
         try {
             return Integer.parseInt(s);
-        } catch (Exception e) { // TODO(Ü2): NumberFormatException fangen, optional loggen
+        } catch (Exception e) { 
             // absichtlich leer gelassen
         }
         return 0; // „Fallback“ – diskutabel
