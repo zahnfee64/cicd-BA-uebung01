@@ -122,7 +122,7 @@ mvn -q -DskipTests=false test
   - Autor: <dein Name>
   - Besonderheit: <1–2 Sätze zu deiner bisherigen Git-Erfahrung>
   ```
-- Reiche den **Repo-Link** in Moodle bis **14.10.2025, 23:59** ein.
+- Reiche den **Repo-Link** in eLearning bis **14.10.2025, 23:55** ein.
 
 ---
 
@@ -158,7 +158,7 @@ mvn -q -DskipTests=false test
 
 ---
 
-## Troubleshooting (Windows, Linux & Allgemein)
+## Troubleshooting
 
 ### A) Quick Checks (alle Plattformen)
 - Projekt-Root geöffnet (Ordner mit `pom.xml`)?  
