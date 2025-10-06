@@ -1,4 +1,4 @@
-# CI/CD Übung – Java Basisprojekt
+# CI/CD Übung – Java Basisprojekt (Ü1 mit Anleitungen)
 
 Dieses Repository ist der Startpunkt für **Übung 1** und wird in **allen folgenden Übungen** weiterverwendet
 (CI mit GitHub Actions → SonarCloud → Docker → Security-Scan).
@@ -6,10 +6,13 @@ Dieses Repository ist der Startpunkt für **Übung 1** und wird in **allen folge
 ---
 
 ## Voraussetzungen (VS Code)
-- **Extension Pack for Java** (Language Support, Debugger, Test Runner, Maven).
-- **JDK 17** aktiv: *Java: Configure Java Runtime*.
-- Öffne **den Projektroot** (Ordner mit `pom.xml`), nicht nur `src/`.
-- Tests ausführen: *Test Explorer* oder per Terminal `mvn -q -DskipTests=false test`.
+- Installiere **Extension Pack for Java** (Language Support, Debugger, Test Runner, Maven).
+- Stelle sicher, dass **JDK 17** aktiv ist: *Java: Configure Java Runtime*.
+- Öffne **den Projektroot** (Ordner mit `pom.xml`, nicht nur `src/`).
+- Tests ausführen: *Test Explorer* oder per Terminal:
+  ```bash
+  mvn -q -DskipTests=false test
+  ```
 
 ---
 
@@ -17,41 +20,109 @@ Dieses Repository ist der Startpunkt für **Übung 1** und wird in **allen folge
 ```bash
 mvn -q -DskipTests=false test
 ```
-
 Coverage-Report (für Übung 2 / SonarCloud): `target/site/jacoco/index.html`
 
 ---
 
 ## Projektstruktur
 - `src/main/java`: `App`, `Calculator`, `TextUtils`, `NumberUtils`
-- `src/test/java`: `CalculatorTest`, `TextUtilsTest` (enthält TODOs & weitere Hinweise)
+- `src/test/java`: `CalculatorTest`, `TextUtilsTest` (enthält TODOs & einen bewusst fehlschlagenden Test)
 
 ---
 
 ## Übung 1 – Aufgaben (24 Punkte)
 
-### 1) Repository einrichten (4 P.)
-- **Repo:** `ci-cd-uebung-[Nachname]` in GitHub (wird weiterverwendet)
-- `README.md`: Name, Studiengang, Erwartungen
-- Lokal klonen
+### (1) Repository einrichten (4 P.) – **Fork & Clone / Template / ZIP**
+> Lege **dein eigenes Repo** mit dem Namen **`ci-cd-uebung-[Nachname]`** an und bringe das Starterprojekt hinein. Wähle **eine** der Varianten.
 
-### 2) Projektgrundlage + erste Tests (6 P.)
-- Kleine App in `src/` (bereits enthalten)
-- **Unit-Tests** in `src/test/` ergänzen (mind. 1 zusätzlicher Testfall)
-- Lokaler Testlauf erfolgreich
+**Variante A – Fork (empfohlen, wenn es ein zentrales Kurs-Repo gibt)**  
+1. Öffne das Kurs-Starter-Repo (z. B. `https://github.com/<org>/<kurs-starter-repo>`).  
+2. Klick **Fork** → *Owner*: dein Account → *Name*: `ci-cd-uebung-[Nachname]` → Create fork.  
+3. **Deinen Fork klonen** (HTTPS oder SSH):
+   ```bash
+   # HTTPS
+   git clone https://github.com/<dein-user>/ci-cd-uebung-[Nachname].git
+   # oder SSH
+   # git clone git@github.com:<dein-user>/ci-cd-uebung-[Nachname].git
+   cd ci-cd-uebung-[Nachname]
+   ```
+4. **Upstream einrichten** (Original-Repo als Referenz):
+   ```bash
+   git remote add upstream https://github.com/<org>/<kurs-starter-repo>.git
+   git remote -v
+   # => origin = dein Fork, upstream = Kurs-Repo
+   ```
+5. **(Später) Kurs-Änderungen holen**:
+   ```bash
+   git fetch upstream
+   git switch main
+   git merge upstream/main   # oder: git rebase upstream/main
+   ```
 
-### 3) Branching (6 P.)
-- Branch **`feature/about-me`**
-- Datei `about-me.md`: *3 Fakten* + *„Warum ist CI/CD für mich relevant?“*
-- Commit & Push
+**Variante B – „Use this template“ / Import**  
+1. Im Kurs-Repo auf **Use this template** → *Owner*: dein Account → *Name*: `ci-cd-uebung-[Nachname]` → Create.  
+   *(Alternativ: GitHub → **Import repository** → URL des Kurs-Repos eintragen.)*  
+2. **Klonen**:
+   ```bash
+   git clone https://github.com/<dein-user>/ci-cd-uebung-[Nachname].git
+   cd ci-cd-uebung-[Nachname]
+   ```
 
-### 4) PR-Workflow & Reviews (6 P.)
-- Pull Request auf `main` mit sinnvoller Beschreibung
-- **Team-Review** (2–3er Teams, je eigenes Repo), mind. 1 Kommentar
-- Feedback adressieren & **Merge**
+**Variante C – ZIP/Download in dein leeres Repo pushen**  
+1. Lege auf GitHub ein **leeres Repo** `ci-cd-uebung-[Nachname]` an.  
+2. Lade das Starterprojekt als ZIP herunter, entpacke es und initialisiere Git:
+   ```bash
+   cd <entpackter-ordner-mit-pom.xml>
+   git init
+   git add .
+   git commit -m "chore: import starter project"
+   git branch -M main
+   git remote add origin https://github.com/<dein-user>/ci-cd-uebung-[Nachname].git
+   git push -u origin main
+   ```
 
-### 5) Dokumentation (2 P.)
-- `README.md` um Abschnitt **„Übung 1“** ergänzen (Autor, Besonderheit/Erfahrung in 1–2 Sätzen)
+**Erster Check lokal**  
+```bash
+mvn -v
+mvn -q -DskipTests=false test
+```
+
+---
+
+### (2) Projektgrundlage + erste Tests (6 P.)
+- Das Starterprojekt liegt bereits unter `src/`.  
+- **Aufgabe:** Schreibe **mindestens einen zusätzlichen Unit-Test** in `src/test/java` (z. B. weitere Fälle für `Calculator` oder `TextUtils`).  
+- Stelle sicher, dass die Tests **lokal ausführbar** sind (`mvn test` oder Test-Explorer).
+
+---
+
+### (3) Branching (6 P.)
+- Erstelle einen Branch **`feature/about-me`**.  
+- Lege eine Datei **`about-me.md`** im Projektroot an **mit folgendem Inhalt**:
+  - **Name**
+  - **Studiengang**
+  - **Erwartungen** an die LV (kurz)
+  - **3 Fakten** über dich
+  - Ein kurzer Satz: **„Warum ist CI/CD für mich relevant?“**
+- Commit & Push des Branches.
+
+---
+
+### (4) PR-Workflow & Reviews (6 P.)
+- Erstelle auf GitHub einen **Pull Request** von `feature/about-me` auf `main` mit *sinnvoller Beschreibung*.  
+- **Team-Review** (2–3er Teams, je eigenes Repo): mind. **1 Kommentar**.  
+- Adressiere das Feedback und **merge** den PR.
+
+---
+
+### (5) Dokumentation (2 P.)
+- Ergänze die `README.md` im Main-Branch um den Abschnitt:
+  ```markdown
+  ## Übung 1
+  - Autor: <dein Name>
+  - Besonderheit: <1–2 Sätze zu deiner bisherigen Git-Erfahrung>
+  ```
+- Reiche den **Repo-Link** in Moodle bis **14.10.2025, 23:59** ein.
 
 ---
 
@@ -59,9 +130,9 @@ Coverage-Report (für Übung 2 / SonarCloud): `target/site/jacoco/index.html`
 
 | Teilaufgabe | Beschreibung | Punkte |
 |---|---|---:|
-| Repo einrichten | Repo + README vorhanden, lokal geklont | 4 |
-| Projektgrundlage & Tests | zusätzliche Tests vorhanden, laufen lokal | 6 |
-| Branching | Branch erstellt, `about-me.md` vollständig | 6 |
+| Repo einrichten | Repo + Starterprojekt im eigenen Repo, lokal geklont | 4 |
+| Projektgrundlage & Tests | mindestens **1 zusätzlicher Test** geschrieben, Tests laufen lokal | 6 |
+| Branching | Branch erstellt, `about-me.md` mit allen geforderten Inhalten | 6 |
 | PR & Review | PR mit Beschreibung, 1 Review-Kommentar, Merge | 6 |
 | Dokumentation | README-Abschnitt „Übung 1“ ergänzt | 2 |
 | **Summe** | | **24** |
@@ -71,7 +142,7 @@ Coverage-Report (für Übung 2 / SonarCloud): `target/site/jacoco/index.html`
 ## Konventionen (für alle Übungen)
 - **Branch-Namen:** `feature/<kurz>`, `fix/<issue-id>-<kurz>`
 - **Commit-Messages:** *Conventional Commits* (`feat:`, `fix:`, `docs:`, `test:`, `refactor:` …)
-- **PR-Qualität:** kleine Diffs, klare Beschreibung, mindestens 1 Review-Kommentar
+- **PR-Qualität:** kleine Diffs, klare Beschreibung, mindestens **1 Review-Kommentar**
 - **Issues:** Labels (`bug`, `feat`, `docs`, …), PRs mit Issues verlinken (`Fixes #<nr>`)
 
 ---
