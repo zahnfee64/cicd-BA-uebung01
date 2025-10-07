@@ -33,4 +33,19 @@ class CalculatorTest {
         List<Integer> nums = Arrays.asList(1, 2, 3, null, 4);
         assertEquals(c.sumUp(nums), c.addAll(nums));
     }
+
+    @Test
+    void add_withNegativeNumbers_shouldReturnCorrectSum() {
+        Calculator c = new Calculator();
+        assertEquals(-1, c.add(2, -3));
+        assertEquals(-5, c.add(-2, -3));
+    }
+
+    @Test
+    void add_withLargeNumbers_shouldHandleOverflowProperly() {
+        Calculator c = new Calculator();
+        int result = c.add(Integer.MAX_VALUE, 1);
+        assertTrue(result < 0, "Addition von MAX_VALUE + 1 sollte überlaufen");
+    }
+
 }
