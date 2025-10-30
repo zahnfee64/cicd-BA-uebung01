@@ -71,6 +71,6 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn sonar:sonar \
-          -Dsonar.projectKey=<YOUR_SONARCLOUD_PROJECT_KEY> \
-          -Dsonar.organization=<YOUR_SONARCLOUD_ORG> \
+          -Dsonar.projectKey=<1f4edc1282fe6e836d6790f73f43ce1c5b5f65e9> \
+          -Dsonar.organization=<zahnfee64> \
           -Dsonar.host.url=https://sonarcloud.io
