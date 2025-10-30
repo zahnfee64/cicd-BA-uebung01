@@ -64,6 +64,12 @@ jobs:
           java-version: 21
           cache: 'maven'
 
+      - name: Download JaCoCo report from matrix
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-ubuntu-latest-java21 
+          path: target/site/jacoco
+
       - name: Build for analysis
         run: mvn -B clean verify -DskipTests
 
