@@ -3,6 +3,11 @@
 Dieses Repository ist der Startpunkt für **Übung 1** und wird in **allen folgenden Übungen** weiterverwendet
 (CI mit GitHub Actions → SonarCloud → Docker → Security-Scan).
 
+# cicd-BA-uebung01
+
+![CI](https://github.com/zahnfee64/cicd-BA-uebung01/actions/workflows/ci.yml/badge.svg)
+
+
 ---
 
 ## Voraussetzungen (VS Code)
