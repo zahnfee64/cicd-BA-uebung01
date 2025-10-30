@@ -71,6 +71,6 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn sonar:sonar \
-          -Dsonar.projectKey=<1f4edc1282fe6e836d6790f73f43ce1c5b5f65e9> \
-          -Dsonar.organization=<zahnfee64> \
+          -Dsonar.projectKey=zahnfee64_cicd-BA-uebung01 \
+          -Dsonar.organization=zahnfee64 \
           -Dsonar.host.url=https://sonarcloud.io
