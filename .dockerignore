@@ -8,3 +8,6 @@ target/
 .vscode/
 # OS files
 .DS_Store
+**/*.log
+**/*.tmp
+target/**/*.jar.original

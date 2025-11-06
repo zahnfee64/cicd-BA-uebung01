@@ -13,6 +13,10 @@ RUN mvn -B -DskipTests=false package && ls -la target
 FROM eclipse-temurin:17-jre
 WORKDIR /app
 
+#added a non-root user for better security
+RUN useradd -m appuser
+USER appuser
+
 # Kopiere das erzeugte JAR aus target nach /app/app.jar
 COPY --from=build /app/target/*.jar /app/app.jar
 
