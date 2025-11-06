@@ -1,6 +1,10 @@
 name: Docker Image (Artifact)
 
 on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
   push:
     branches: [ main ]
     paths: [ 'Dockerfile', '.dockerignore', 'pom.xml', 'src/**', '.github/workflows/**' ]
