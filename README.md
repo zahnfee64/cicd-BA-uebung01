@@ -6,6 +6,7 @@ Dieses Repository ist der Startpunkt für **Übung 1** und wird in **allen folge
 # cicd-BA-uebung01
 
 ![CI](https://github.com/zahnfee64/cicd-BA-uebung01/actions/workflows/ci.yml/badge.svg)
+![Docker Image](https://github.com/zahnfee64/cicd-BA-uebung01/actions/workflows/docker.yml/badge.svg)
 
 
 ---
