@@ -61,11 +61,8 @@ jobs:
 
       - name: Install Grype
         run: |
-          curl -sSL -o grype.tar.gz https://github.com/anchore/grype/releases/latest/download/grype_$(uname -s)_$(uname -m).tar.gz
-          tar -xzf grype.tar.gz
-          sudo mv grype /usr/local/bin/
-          grype version
-
+          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh \
+            | sh -s -- -b /usr/local/bin
 
       - name: Scan Docker image with Grype
         run: |
