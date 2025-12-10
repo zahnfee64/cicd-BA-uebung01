@@ -49,6 +49,25 @@ jobs:
           name: coverage-${{ matrix.os }}-java${{ matrix.java }}
           path: target/site/jacoco/jacoco.xml
 
+      - name: Build Docker images
+        run: docker build -t myapp:ci .
+
+      - name: Install Grype
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sudo bash
+        
+      - name: Scan Docker image with Grype
+        run: |
+          grype myapp:ci -o json > grype-report.json
+      - name: Upload Grype JSON report
+        uses: actions/upload-artifact@v4
+        with:
+          name: grype-report
+          path: grype-report.json
+
+
+
+
   sonar:
     name: SonarCloud Analysis
     runs-on: ubuntu-latest
