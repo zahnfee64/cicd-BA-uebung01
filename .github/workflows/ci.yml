@@ -67,7 +67,7 @@ jobs:
 
       - name: Scan Docker image with Grype
         run: |
-          grype myapp:ci -o json > grype-report.json
+          grype myapp:ci --fail-on high --only-fixed -o json > grype-report.json
 
       - name: Upload Grype JSON report
         uses: actions/upload-artifact@v4
@@ -82,7 +82,7 @@ jobs:
           | sh -s -- -b /usr/local/bin
 
       - name: Scan Docker image with Trivy
-        run: trivy image -f json -o trivy-report.json myapp:ci
+        run: trivy image --severity HIGH,CRITICAL --exit-code 1 --ignore-unfixed -f json -o trivy-report.json myapp:ci
 
       - name: Upload Trivy JSON report
         uses: actions/upload-artifact@v4
