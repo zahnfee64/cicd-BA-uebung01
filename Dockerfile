@@ -10,7 +10,7 @@ RUN mvn -B -DskipTests=false package && ls -la target
 
 
 # ===== STAGE 2: Runtime =====
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:11.0.12_7-jre-centos7
 WORKDIR /app
 
 #added a non-root user for better security

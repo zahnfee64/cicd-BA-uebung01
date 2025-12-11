@@ -50,7 +50,7 @@ jobs:
           path: target/site/jacoco/jacoco.xml
 
   security-scan:
-    name: Security Scan with Grype
+    name: Security Scan with Grype + Trivy
     runs-on: ubuntu-latest
     needs: build-test
     steps:
